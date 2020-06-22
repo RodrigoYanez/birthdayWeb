@@ -1,0 +1,56 @@
+<div class="container">
+  <div [hidden]=" submitted" class="container-fluid" style="position: initial; width: 50%;">
+      <h1>Birthday Information</h1>
+      <form (ngSubmit)="onSubmit()" #birthInfoForm="ngForm" role="form">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            &nbsp;
+            <input type="text" id="firstName"  [(ngModel)]="bInfo.firstName" required name="firstName" #fullName="ngModel" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            &nbsp;
+            <input type="text" id="lastName"  [(ngModel)]="bInfo.lastName" required name="lastName" #fullName="ngModel" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="birthDate">Birth Date</label>
+            &nbsp;
+            <input type="date" id="birthDate"  [(ngModel)]="bInfo.birthDate" required name="birthDate" #fullName="ngModel" class="form-control">
+          </div>
+          <div class="form-group">
+            <div class="col-md-10"></div>
+            <div class="form-group">
+              <button type="submit" [disabled]="!birthInfoForm.form.valid" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+      </form>
+    </div>  
+
+  <div [hidden]="!submitted" class="container-fluid" style="position: initial; width: 50%;">
+      <h1>Birthday Information</h1>
+      <div class="form-group">
+        <label>{{bInfoRS.firstName}}</label>
+        &nbsp;
+        <label>{{bInfoRS.lastName}}</label>
+      </div>
+      <div class="form-group">
+        <label class="control-label" >Your Birthday in </label>
+        &nbsp;
+        <label>{{bInfoRS.dateOfBirthday}}</label>
+        &nbsp;
+        <label class="control-label" >dais</label>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Age</label>
+        &nbsp;
+        <label>{{bInfoRS.age}}</label>
+      </div>
+      <div ng-hide="bInfoRS.poem == ''" class="form-group">
+        <label class="control-label">Poem</label>
+        <textarea class="form-control" rows ="20">{{bInfoRS.poem}}</textarea>
+      </div>
+      <div class="form-group">
+      <button (click)="submitted=false; birthInfoForm.reset();" class="btn btn-default"> Back</button>
+    </div>
+  </div>
+</div>
